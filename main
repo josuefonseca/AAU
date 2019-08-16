@@ -1,0 +1,57 @@
+import wget
+import os
+from _datetime import datetime
+import os.path as path
+
+log = r"C:\inetpub\wwwroot\Log\Update.txt"
+
+if path.exists(log):
+    print("Log de atualizações encontrado")
+    arquivo = open(log, 'r')
+    linha = arquivo.readlines()
+    ver = (linha[linha.__len__()-1][:3])
+    print("Versão Instalada: " + ver)
+    arquivo.close()
+
+    print("\nProcurando atualizações...")
+    ver = int(ver)
+    upd = ver+10
+
+    while(upd > ver):
+        src = r"http://emissorfiscal.acfiles.net/PDV-v2.0.1.1-BR-ATUALIZADOR-FUNCIONAL-" + upd.__str__() + ".exe"
+        out = r"C:\inetpub\wwwroot\Update\PDV-v2.0.1.1-BR-ATUALIZADOR-FUNCIONAL-" + upd.__str__() + "_world.exe"
+
+        try:
+            print(f"Versão {upd}")
+            wget.download(src, out)
+
+            print("Download concluído. Iniciando instalação.")
+
+            os.system("acui.bat " + str(upd))
+
+            datahora = datetime.now()
+            data = datahora.strftime('%d/%m/%Y')
+            hora = datahora.strftime('%H:%M')
+
+            arq = open(log, 'a')
+            arq.writelines(f"\n{upd} installed in {data} at {hora}")
+            arq.close()
+
+            print(f"\n{upd} installed in {data} at {hora}")
+            break
+
+        except Exception as e:
+            print(f"{e}\n")
+            upd -= 1
+
+    print("\n\tNão há atualizações disponíveis.")
+
+else:
+    print("Log de atualizações não encontrado.")
+
+
+
+
+
+
+
