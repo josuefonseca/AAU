@@ -1,6 +1,6 @@
 # AAU
 Acronyn Auto Update. Busca e instala atualizações para o Emissor Fiscal Acronyn
-Desenvolvido por Josué Fonseca em World Computer Informática para uso interno. Todos os direitos reservados.
+Desenvolvido por Josué Fonseca em World Computer Informática para uso interno.
 
 # main
 Código-fonte do script principal, que identifica a versão o Emissor Fiscal instalada, verifica se há atualizações e executa o download da versão mais recente. Concebido na versão 3.7 da linguagem Python.
